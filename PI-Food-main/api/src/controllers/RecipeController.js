@@ -19,10 +19,10 @@ async function getRecipeId(req,res){
 
         try {
 
-            await axios.get(
+            const resApi = await axios.get(
                 `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
-            )
-                .then(({data})=>{
+            );
+            const data = resApi.data;
                     if(data){   
                         const charRecipe={
                             id: data.id,
@@ -36,26 +36,23 @@ async function getRecipeId(req,res){
                             diets: data.diets,  
                         };
                         res
-                        .writeHead(STATUS_OK, {"Content-type": "application/json"})
-                        .end(JSON.stringify(charRecipe));
+                        .status(STATUS_OK).json(charRecipe);
                     }else{
                         res
-                            .writeHead(STATUS_ERROR, {"Content-Type": "text/plain"})
-                            .end("not found")
-                    }    
-                });
+                        .status(STATUS_ERROR).json({message: "primer error"})
+                    }
+                
             } catch (error) {
                 res
-                .writeHead(STATUS_SERVER_ERROR, {"Content-Type": "text/plain"})
-                .end(error.message)
+                .status(STATUS_ERROR).json({message:"segundo error"});
         }        
     }else{
         try {
             const recipe = await Recipe.findByPk(id);
-            if(recipe === null){
-                res.status(STATUS_ERROR).json({message: "Recipe not found in  database"});
+            if(recipe){
+                res.status(STATUS_OK).json(recipe);
             }else{
-                res.json(recipe);
+                res.status(STATUS_ERROR).json({message:"tercer error"})
             }
         } catch (error) {
             res.status(STATUS_SERVER_ERROR).json({message:`Error retrieving recipe from database ${error}`});

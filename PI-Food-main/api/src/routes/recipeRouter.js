@@ -1,17 +1,20 @@
 const express = require('express');
-const router = express.Router();
+const recipeRouter = express.Router();
+const {getRecipeById,getAllRecipe,postRecipe} = require('../handler/handlerRecipes');
 
 
 
 // informacion  de la receta por   ID
 
-router.get('/:id',getRecipeById);
+recipeRouter.get('/:id',getRecipeById);
 
 // iformacion de todas las Recetas 
 
-router.get('/', getAllRecipe);
+recipeRouter.get('/', getAllRecipe);
 
 // informacion para crear una nueva receta
 
-router.post('/', postRecipe);
+recipeRouter.post('/', postRecipe);
+
+module.exports= recipeRouter;
 

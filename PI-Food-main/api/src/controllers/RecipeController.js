@@ -8,71 +8,52 @@ const STATUS_ERROR=404;
 const STATUS_SERVER_ERROR=500;
 
 
-// const url =`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`; 
-const mock = `https://run.mocky.io/v3/aeee69f0-6f4d-40b3-8000-469155e3b5fd`;
+const urlAPI =`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`; 
+// const mock = `https://run.mocky.io/v3/9f3b2b41-0a17-4d55-85cb-0b452b24b0a5`;
 
-async function getRecipeId(req,res){
-    const {id} = req.params;
+async function getRecipeId(id){
+    
     const sourceId = isNaN(id) ? "db" : "api";
 
     if(sourceId === "api"){
 
-        try {
-
-            const resApi = await axios.get(
+        const data = await axios.get(
                 `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
-            );
-            const data = resApi.data;
-                    if(data){   
-                        const charRecipe={
+            )
+            .then(response => response.data)
+            .then(data =>{
+                const dataRecived={
                             id: data.id,
-                            name: data.name,
-                            summary: data.summary,
-                            healthscore: data.healthscore,
+                            name: data.title,
+                            summary: data.summary.replace(/<\/?[^>]+(>|$)/g, ""),
+                            healthscore: data.healthScore,
                             steps: data.instructions,
                             vegetarian: data.vegetarian,
                             vegan: data.vegan,
                             glutenFree: data.glutenFree,
                             diets: data.diets,  
-                        };
-                        res
-                        .status(STATUS_OK).json(charRecipe);
-                    }else{
-                        res
-                        .status(STATUS_ERROR).json({message: "primer error"})
-                    }
-                
-            } catch (error) {
-                res
-                .status(STATUS_ERROR).json({message:"segundo error"});
-        }        
-    }else{
-        try {
-            const recipe = await Recipe.findByPk(id);
-            if(recipe){
-                res.status(STATUS_OK).json(recipe);
-            }else{
-                res.status(STATUS_ERROR).json({message:"tercer error"})
-            }
-        } catch (error) {
-            res.status(STATUS_SERVER_ERROR).json({message:`Error retrieving recipe from database ${error}`});
-        }
-    }
+                        }
+
+                        return dataRecived;
+                    })
+                    return data;
+                }   
+            return await Recipe.findByPk(id);    
 };
 
 
 // get informacion de la api 
 
-async function getApi(req,res){
-    try {
-        const apiUrl = await axios.get(mock);
-        const apiInfo = apiUrl.data.results?.map((data)=> {
+async function getApi(){
+    
+        const apiUrl = await axios.get(urlAPI);
+        return apiUrl.data.results.map((data)=> {
             return {
                 id: data.id,
                 name: data.title,
                 image: data.image,
                 summary: data.summary,
-                healthscore: data.healthscore,
+                healthscore: data.healthScore,
                 steps: data.instructions,
                 vegetarian: data.vegetarian,
                 vegan: data.vegan,
@@ -80,63 +61,43 @@ async function getApi(req,res){
                 diets: data.diets,
             }
         });
-        res
-        .status(STATUS_OK).json(apiInfo);
-    } catch (error) {
-        res
-        .status(STATUS_SERVER_ERROR).json({message: error});
-    }
+    
 };
 
 //get infoDB
 
-async function recipeDb(res,req){
-    try {
-        const recipe= await Recipe.findAll({
-            include: {
-                model: Diets,
-                attributes: ['name'],
-
-            }
-        });
-        const recipeDb = recipe.map((rec) =>{
-            return{
-                name: rec.name,
-                image: rec.image,
-                summary: rec.summary,
-                healthscore: rec.healthscore,
-                steps: rec.steps,
-                diets: rec.diets.map( diet => diet.name),
-            }
-        });
-        res
-        .status(STATUS_OK).json(recipeDb);
-    } catch (error) {
-        res
-        .status(STATUS_SERVER_ERROR).json({message: error});
-    }
+async function recipeDb(){
+    
+    const recipe = await Recipe.findAll({
+        attributes: ["id","name","image","summaryDish","healthscore","steps"],
+        include: {model: Diets}
+    });
+        return recipe.map(({dataValues:{id, name, image, suammaryDish, healthscore,steps} })=>({
+            id,
+            name,
+            image,
+            suammaryDish,
+            healthscore,
+            steps,
+            //diets: Diets.map(({name})=> name),
+        }));
 }
 
 // get todas las recetas api & BD
 
-async function allRecipes(req,res){
-    try {
-        const Api = await getApi();
-        const DB = await recipeDb();
-        const all = DB.concat(Api);
-        
-        res
-        .status(STATUS_OK).json(all);
-    } catch (error) {
-        res
-        .status(STATUS_ERROR).json({message: error});
-    }
-}
+// async function allRecipes(){
+
+//     const Api = await getApi();
+//     const DB = await recipeDb();
+//     const all = DB.concat(Api);
+//     return all;
+    
+// }
 
 
 module.exports = {
     getRecipeId,
     getApi,
     recipeDb,
-    allRecipes
+    //allRecipes
 }

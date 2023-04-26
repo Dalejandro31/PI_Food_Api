@@ -1,5 +1,5 @@
 const {Recipe, Diets} = require('../db')
-const {getRecipeId, allRecipes} = require('../controllers/RecipeController')
+const {getRecipeId, getApi,recipeDb,} = require('../controllers/RecipeController.js')
 
 const STATUS_OK =200;
 const STATUS_CREATED = 201;
@@ -9,39 +9,46 @@ const STATUS_ERROR=404;
 async function getRecipeById(req, res){
 
     const { id } = req.params; 
-
+    
     try {
-        const getID= await getRecipeId(id);
-        res
-        .status(STATUS_OK).json(getID)
+        const getId= await getRecipeId(id)
+        res.status(STATUS_OK).json(getId)
     } catch (error) {
         res.status(STATUS_ERROR).json({message:"este es el  error"});
     }
 }
 // get de todas las recetas
 async function getAllRecipe(req, res){
-    
-    try { 
-        const getAll = await allRecipes();
-        if(req.query.hasOwnProperty('name')){
-            const { name } = req.query;
-            const filterName= getAll.filter((charName)=>
-            charName.name.toLowerCase().includes(name.toLowerCase()));
+    const {name} =req.query;
 
-            if(filterName.length > 0){
-                res
-                .status(STATUS_OK).json(filterName);
-            }else{
-                res
-                .status(STATUS_ERROR).json({message:"Couldn't find the recipe you're searching for"})
-            }
-        }else{
-            res
-            .status(STATUS_OK).json(getAll);
-        }    
-    } catch (error) {
-        res.status(STATUS_ERROR).json({message: error});
+    const [api, db] = await Promise.all([getApi(),recipeDb()]);
+
+    const allRecipes = [...api, ...db];
+
+    if(name){
+        try {
+            let filterRecipe= allRecipes.filter((x)=>
+            x.name.toLowerCase().includes(name.toLowerCase()));
+
+            filterRecipe.length
+                ? res
+                .status(STATUS_OK).json(filterRecipe)
+                : res
+                .status(STATUS_ERROR).json({message:"Recipe don't excist"});
+        } catch (error) {
+            return res.status(STATUS_ERROR).json({message:error});
+            
+        }
+    }else{
+        try {
+            res.json(allRecipes);    
+        } catch (error) {
+            res.status(STATUS_ERROR).json({message:"errorDB"})
+        }
+        
+        
     }
+    
 }
 
 //post para crear recetas 

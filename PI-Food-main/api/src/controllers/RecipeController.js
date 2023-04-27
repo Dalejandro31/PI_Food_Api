@@ -79,7 +79,7 @@ async function recipeDb(){
             suammaryDish,
             healthscore,
             steps,
-            //diets: Diets.map(({name})=> name),
+            diets: Diets.map(({name})=> name),
         }));
 }
 

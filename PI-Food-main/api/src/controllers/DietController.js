@@ -5,10 +5,12 @@ const { getApi }= require('./RecipeController');
 
 
 async function getDietsApi(){
+    const dietsAll=[];
+    
     const recipeByAPI = await getApi();
     const allDietsApi= recipeByAPI.map((diet)=>diet.diets);
 
-    const dietsAll=[];
+    
 
     allDietsApi.forEach((x)=> x.forEach ((y)=> dietsAll.push(y)));
 
@@ -16,17 +18,20 @@ async function getDietsApi(){
 
 };
 
+///////////////////////////////////////////////////////////////////////////////////////s
 
 async function getDietsDB(){    
-    const dietAll = await Diets.findAll({
-        attributes:["name","id"]
+    const infoApi= await getDietsApi();
+
+    infoApi.forEach((info)=>{
+        Diets.findOrCreate({
+            where: {name : info}
+        });
     });
 
-    const dietAllArray=[];
-
-    dietAll.forEach((x)=> dietAllArray.push({name:x.name, id:x.id}));
-
-    return dietAllArray;
+    const getAll= await Diets.findAll();
+    
+    return getAll;
 };
 
 

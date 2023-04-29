@@ -1,5 +1,5 @@
-const {Recipe, Diets} = require('../db')
-const {getRecipeId, getApi,recipeDb,} = require('../controllers/RecipeController.js')
+const {Recipe, Diets} = require('../db.js')
+const {getRecipeId, getApi,recipeDb,} = require('../controllers/RecipeController.js');
 
 const STATUS_OK =200;
 const STATUS_CREATED = 201;
@@ -61,21 +61,26 @@ async function postRecipe(req, res){
             .json({message: "The require information is missing"});
         }
 
-        const recipePost =await Recipe.create({
+        const newRecipe =await Recipe.create({
             name,
-            image,
             summaryDish,
             healthscore,
-            steps
-        });
+            steps,
+            image
+        }); 
+        // diets?.map(async (e) => {
+        //     console.log("::::::::",newRecipe);
+        //     let dietDb = await Diets.findOne({where: {name: e}})
+        //     await newRecipe.addDiets(dietDb)
+        // })
 
-        if(diets && diets.length){
-            dietInstances = await Promise.all(diets.map((searchDiet)=>{
-                return Diets.findOrCreate({where : { name : searchDiet}});
-            }));
-            await post.setDiets(dietInstances.map((dietInstance) => dietInstance[0]));
+        if(diets){
+            console.log("***********::",newRecipe);
+            let diet= await Diets.findAll({where:{name:diets}});
+            await newRecipe.addDiets(diet);
         }
-        res.status(STATUS_CREATED).json(recipePost);
+        
+        res.status(STATUS_CREATED).json(newRecipe);   
     } catch (error) {
         res.status(STATUS_ERROR).json({message: error});
     }
@@ -84,5 +89,5 @@ async function postRecipe(req, res){
 module.exports={
     getRecipeById,
     getAllRecipe,
-    postRecipe
+    postRecipe 
 };

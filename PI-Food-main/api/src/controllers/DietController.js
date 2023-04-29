@@ -1,5 +1,3 @@
-const axios = require('axios');
-require('dotenv').config();
 const{Diets} = require('../db');
 const { getApi }= require('./RecipeController');
 
@@ -12,7 +10,7 @@ async function getDietsApi(){
 
     
 
-    allDietsApi.forEach((x)=> x.forEach ((y)=> dietsAll.push(y)));
+    allDietsApi.forEach((x)=> x.forEach((y)=> dietsAll.push(y)));
 
     return[...new Set(dietsAll)];
 
@@ -26,13 +24,16 @@ async function getDietsDB(){
     infoApi.forEach((info)=>{
         Diets.findOrCreate({
             where: {name : info}
-        });
-    });
+        }); 
+    }); 
 
     const getAll= await Diets.findAll();
     
     return getAll;
+    //console.log(getAll)
 };
+
+
 
 
 
@@ -40,5 +41,6 @@ async function getDietsDB(){
 
 module.exports={
     getDietsApi,
-    getDietsDB
+    getDietsDB,
+    
 };

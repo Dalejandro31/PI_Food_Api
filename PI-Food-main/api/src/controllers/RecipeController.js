@@ -27,7 +27,7 @@ async function getRecipeId(id){
                             name: data.title,
                             summary: data.summary.replace(/<\/?[^>]+(>|$)/g, ""),
                             healthscore: data.healthScore,
-                            steps: data.instructions,
+                            steps: data.instructions.replace(/<\/?[^>]+(>|$)/g, ""),
                             vegetarian: data.vegetarian,
                             vegan: data.vegan,
                             glutenFree: data.glutenFree,
@@ -66,20 +66,20 @@ async function getApi(){
 
 //get infoDB
 
-async function recipeDb(){
+async function recipeDb(){ 
     
-    const recipe = await Recipe.findAll({
+    const recipes = await Recipe.findAll({
         attributes: ["id","name","image","summaryDish","healthscore","steps"],
-        include: {model: Diets}
+        include: {model: Diets,attributes:["name"]}
     });
-        return recipe.map(({dataValues:{id, name, image, suammaryDish, healthscore,steps} })=>({
-            id,
-            name,
-            image,
-            suammaryDish,
-            healthscore,
-            steps,
-            diets: Diets.map(({name})=> name),
+        return await recipes.map(recipe => ({
+            id:recipe.id,
+            name:recipe.name,
+            summary: recipe.summaryDish,
+            healthScore:recipe.healthscore,
+            steps: recipe.steps,
+            image: recipe.image,
+            diets: recipe.Diets.map(diet => diet.name)
         }));
 }
 

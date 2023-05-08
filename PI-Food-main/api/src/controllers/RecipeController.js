@@ -9,7 +9,7 @@ const STATUS_SERVER_ERROR=500;
 
 
 const urlAPI =`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`; 
-// const mock = `https://run.mocky.io/v3/9f3b2b41-0a17-4d55-85cb-0b452b24b0a5`;
+const mock = `https://run.mocky.io/v3/4bc7ed61-deb6-4118-b2bb-7b811243f028`;
 
 async function getRecipeId(id){
     
@@ -69,13 +69,13 @@ async function getApi(){
 async function recipeDb(){ 
     
     const recipes = await Recipe.findAll({
-        attributes: ["id","name","image","summaryDish","healthscore","steps"],
+        attributes: ["id","name","image","summary","healthscore","steps"],
         include: {model: Diets,attributes:["name"]}
     });
         return await recipes.map(recipe => ({
             id:recipe.id,
             name:recipe.name,
-            summary: recipe.summaryDish,
+            summary: recipe.summary,
             healthScore:recipe.healthscore,
             steps: recipe.steps,
             image: recipe.image,

@@ -11,36 +11,36 @@ import { GET_ALL_RECIPES,
     POST_RECIPE} from './actions-type';
 
     const initialState={
-        allRecipes:[],
-        allDiets:[],
+        recipes:[],
+        diets:[],
         recipeDetail:[],
         filterRecipe:[],
     }
 
-export const reducer = (state= initialState,action) =>{
+const configReducer = (state= initialState,action) =>{
 //---------->> RECIPESS <<-------------------------
 
         switch(action.type){
             case GET_API:
-                let filterApi= action.payload === 'db' ?
-                state.filterRecipe.filter(e => e.createInDB): 
-                state.filterRecipe.filter(x => !x.createInDB)
+                let recipeFilterData= action.payload === 'db' ? 
+                state.filterRecipe.filter(e => e.createdInDb) 
+                : state.filterRecipe.filter( x => !x.createdInDb)
                 return{
                     ...state,
-                    allRecipes:filterApi
+                    recipes: recipeFilterData
                 };
 
             case GET_ALL_RECIPES:
                 return{
                     ...state,
-                    allRecipes: action.payload,
+                    recipes: action.payload,
                     filterRecipe: action.payload
                 };
 
                 case GET_RECIPE_BY_NAME:
                 return{
                     ...state,
-                    allRecipes: action.payload.slice()
+                    recipes: action.payload
                 };
 
                 case GET_RECIPE_DETAIL:
@@ -55,48 +55,50 @@ export const reducer = (state= initialState,action) =>{
                 case GET_DIETS:
                     return{
                         ...state,
-                        allDiets: action.payload
+                        diets: action.payload
                     };
 
                     case FILTER_DIETS:
-                        const filterForDiets = state.filterRecipe.filter(diet => diet.diets.includes(action.payload));
-
-                        return{
-                            ...state,
-                            allRecipes: action.payload ==  'All' ? state.filterRecipe.slice() : filterForDiets.slice()
-                        };
+                        const dietsFiltered = state.filterRecipe.filter(e => e.diets.includes(action.payload))
+                        return {
+                                ...state,
+                                recipes: action.payload === 'All' ? state.filterRecipe : dietsFiltered               
+                    }
 
 //---------------------->> Order asc desc <<------------------------------                        
 
                 case ORDER_ASC:
                     return{
                         ...state,
-                        allRecipes: state.filterRecipe.sort((a,b) => a.name.localeCompare(b.name))
+                        recipes: state.filterRecipe.sort((a,b) => a.name.localeCompare(b.name))
                     };
                 
                 case ORDER_DESC:
                     return{
                         ...state,
-                        allRecipes: state.filterRecipe.sort((a,b) => b.name.localeCompare(a.name))
+                        recipes: state.filterRecipe.sort((a,b) => b.name.localeCompare(a.name))
                     };
                 
                 case HEALTSC_ASC:
                     return{
                         ...state,
-                        allRecipes: state.filterRecipe.sort((a,b) => b.healthscore - a.healthscore)
+                        recipes: state.filterRecipe.sort((a,b) => b.healthscore - a.healthscore)
                     };
                 
                 case HEALTSC_DES:
                     return{
                         ...state,
-                        allRecipes: state.filterRecipe.sort((a,b) => a.healthscore - b.healthscore)
+                        recipes: state.filterRecipe.sort((a,b) => a.healthscore - b.healthscore)
                     }
 
 //---------------------->> post <<--------------------------------------------------------------------------
                 case POST_RECIPE:
                     return{
                         ...state,
-                        allRecipes: [...state.allRecipes.slice(), action.payload]
+                        recipes: state.recipes.concat(action.payload)
                     };
+                default:return {...state};
         }
     }
+
+export default configReducer;    

@@ -53,7 +53,7 @@ async function getAllRecipe(req, res){
 
 //post para crear recetas 
 async function postRecipe(req, res){
-    const {name, image, summaryDish, healthscore, steps,diets} = req.body;
+    const {name, image, summary, healthscore, steps,diets} = req.body;
     try {
         if(!name || !image){
             return res
@@ -63,7 +63,7 @@ async function postRecipe(req, res){
 
         const newRecipe =await Recipe.create({
             name,
-            summaryDish,
+            summary,
             healthscore,
             steps,
             image

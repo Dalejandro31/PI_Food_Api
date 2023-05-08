@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      summaryDish:{
+      summary:{
         type: DataTypes.TEXT,
         allowNull: false,
       },

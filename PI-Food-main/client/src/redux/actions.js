@@ -14,37 +14,32 @@ import { GET_ALL_RECIPES,
 //ACTIONS RECIPES------------------------------------------------------------->>
 export const getAllRecipes= () =>{
     return async(dispatch) => {
-        try {
-            const response = await axios.get('http://localhost:3001/recipes')
-            const data = response.data;
-            dispatch({type: GET_ALL_RECIPES, payload: data});
-        } catch (error) {
-            console.error('RECIPES NOT FOUND',error);
-        }
+        await axios.get('http://localhost:3001/recipes')
+        .then((res) => res.data)
+        .then((data) => dispatch({type: GET_ALL_RECIPES, payload: data}))
     }
 }
 
 export const getRecipeName = (name) => {
-    return async(dispatch) => {
-        try {
-            const response = await axios.get(`http://localhost:3001/recipes/?name=${name}`);
-            const data = response.data;
-            dispatch({type: GET_RECIPE_BY_NAME, payload: data});
-        } catch (error) {
-            console.error('NAME RECIPES DONT EXCIST',error);
-        }
+    return (dispatch) => {
+        
+        dispatch({type:GET_RECIPE_DETAIL, payload: []})
+        axios.get(`http://localhost:3001/recipes/?name=${name}`)
+        .then((res)=> res.data)
+        .then((data) => dispatch({type: GET_RECIPE_BY_NAME, payload: data}))
+        
+        
     }
 }
 
 export const getRecipeDetail = (id) => {
     return async(dispatch) => {
-        try {
-            const response = await axios.get(`http://localhost:3001/recipes/?name=${id}`);
-            const data = response.data;
-            dispatch({type: GET_RECIPE_DETAIL, payload: data});
-        } catch (error) {
-            console.error('RECIPE DONT EXCIST',error);
-        }
+        
+        dispatch({type:GET_RECIPE_DETAIL, payload:[]})
+        await axios.get(`http://localhost:3001/recipes/${id}`)
+        .then((res)=>res.data)
+        .then((data) => dispatch({type: GET_RECIPE_DETAIL, payload: data}))
+        .catch((err) => console.log(err))
     }
 }
 
@@ -52,23 +47,20 @@ export const getRecipeDetail = (id) => {
 
 export const getDiets = () =>{
     return async(dispatch) => {
-        try {
-            const response = await axios.get(`http://localhost:3001/diets`);
-            const data = response.data;
-            dispatch({type: GET_DIETS, payload: data});
-        } catch (error) {
-            console.error('DIET DONT EXCIST', error);
-        }
+        
+        await axios.get(`http://localhost:3001/diets`)
+        .then((res)=>{
+            let response = res.data?.map(e =>e.name)
+            dispatch({type: GET_DIETS, payload:response})
+        })
+
     }
 }
 
 export const filterDiet  = (diets) =>{
-    return async(dispatch) => {
-        try {
-            dispatch({type:FILTER_DIETS, payload: diets});
-        } catch (error) {
-            console.error(error);
-        }
+    return{
+        type: FILTER_DIETS,
+        payload: diets
     }
 }
 

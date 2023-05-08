@@ -1,0 +1,66 @@
+.divBody{
+    background-color: #fefae0;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;
+    width: 100vw; 
+    height: 100vh;
+}
+.divForms{
+    background: linear-gradient(135deg rgba(255,255,255,0.1), rgba(255,255,255,0));
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 1000px;
+    height: 800px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 32px;
+}
+
+.divInputForms{
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.divInputname{
+    display: flex;
+    align-items: center;
+}
+
+.buttonSubmitForm{
+    background-color: #333; /* Color de fondo */
+    border: none; /* Borde */
+    color: white; /* Color del texto */
+    padding: 12px 20px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Decoración de texto */
+    display: inline-block; /* Visualización en línea */
+    font-size: 16px; /* Tamaño de la fuente */
+    margin: 8px 0; /* Margen */
+    transition-duration: 0.2s; /* Duración de la transición */
+    cursor: pointer; /* Cursor */
+    border-radius: 4px; /* Radio del borde */
+    margin-left: 2rem;
+}
+
+.inputForms{
+    border-radius: 10px;
+    margin-right: 10px;
+    width: 150px;
+    transition: width 0.3s ease-in-out;
+}
+
+.inputForms:focus {
+    width: 250px;
+}
+
+.labelForms{
+    margin-right: 2rem;
+    min-width: 100px;
+}

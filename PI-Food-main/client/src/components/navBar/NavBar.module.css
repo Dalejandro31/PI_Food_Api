@@ -1,0 +1,54 @@
+.contenedorNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4a5759;
+    border-bottom: 3px solid black;
+    width: 100%;
+    height: 50px;
+    box-shadow: 0px 2px 5px black, 0px -2px 5px blue, 0px 0px 20px white;
+    background: linear-gradient(135deg rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.butonLandingPage {
+    background-color: #dedbd2;
+    border-radius: 10px;
+    margin-right: auto;
+    margin-left: 20px;
+}
+
+.butonLandingPage:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.searchContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.inputSearch {
+    border-radius: 10px;
+    margin-right: 10px;
+    width: 150px;
+    transition: width 0.3s ease-in-out;
+}
+
+.inputSearch:focus {
+    width: 250px;
+}
+
+.butonSearch {
+    background-color: #dedbd2;
+    border-radius: 10px;
+}
+
+.butonSearch:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}

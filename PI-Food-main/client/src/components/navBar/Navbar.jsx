@@ -7,10 +7,11 @@ import {getRecipeName} from '../../redux/actions';
 
 
 function NavBar(){
+
     const dispatch = useDispatch();
     const [recipeName, setRecipeName] = useState({recipeValue:''});
-    const handleSearch = (event) =>{
-        setRecipeName({recipeValue: event.target.value})
+    const handleSearch = (e) =>{
+        setRecipeName({recipeValue: e.target.value})
     }
     const onSearch = () =>{
         dispatch(getRecipeName(recipeName.recipeValue));
@@ -20,7 +21,7 @@ function NavBar(){
                 <Link to='/'><button className={style.butonLandingPage}>LANDING PAGE</button></Link>
             <div className={style.searchContainer}>
                 <input className={style.inputSearch} type="text" value={recipeName.recipeValue} onChange={(e)=> handleSearch(e)} placeholder='recipes..' />
-                <button className={style.butonSearch} onClick={()=>onSearch}>SEARCH</button>
+                <button className={style.butonSearch} onClick={onSearch}>SEARCH</button>
             </div>
         </div>
     )

@@ -1,0 +1,72 @@
+.contenedorPadre{
+    background: #7a6c5d;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;
+    width: auto; 
+    height: auto;
+}
+
+.contenedorHijo{
+    width: 80%;
+    max-width: 80%;
+    height: 70%;
+    max-height: 70%;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    background-color: #bcac9b;
+    background: linear-gradient(135deg rgba(255,255,255,0.1), rgba(255,255,255,0));
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.divImagen{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.image{
+    filter: drop-shadow(0 0 20px #121212);
+    border-radius: 10px;
+}
+
+.divDescription{
+    border: 2px solid;
+    width: 70%;
+    max-width: 70%;
+    border-radius: 20px;
+}
+
+.buttonHome {
+    background-color: #964b00;
+    color: white;
+    font-size: 12px;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    text-shadow: 0px 0px 10px #ffcc66;
+    box-shadow: 0px 0px 10px #ffcc66;
+    transition: all 0.3s ease-in-out;
+    width: 400px;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.buttonHome:hover {
+    background-color: #ffcc66;
+    color: #964b00;
+    text-shadow: 0px 0px 20px #964b00;
+    box-shadow: 0px 0px 20px #964b00;
+}
+
+.buttonHome:active {
+    transform: scale(0.9);
+}

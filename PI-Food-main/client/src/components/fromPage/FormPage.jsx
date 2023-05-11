@@ -77,8 +77,9 @@ const handleSubmit = (e) =>{
   return (
 
     <div className={style.divBody}>
+      
       <div className={style.divForms}>
-
+          <h1>CREATE YOUR RECIPE</h1>
         
           <div className={style.divInputname}>
             <label className={style.labelForms} htmlFor="name">Name: </label>

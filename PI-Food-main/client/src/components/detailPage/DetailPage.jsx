@@ -20,16 +20,17 @@ export default function Detail(){
     },[dispatch,id])
 
     return(
-        <div>
+        <div className={style.contenedorPadre}>
+            
             {
                 selector.hasOwnProperty('name')?(
-                    <div>
-                        
-                        <div>
-                            <img src={selector.image} alt={selector.name}/>
+                    <div className={style.contenedorHijo}>
+                        <h1>DETAILS</h1>
+                        <div className={style.divImagen}>
+                            <img className={style.image} src={selector.image} alt={selector.name}/>
                         </div>
                         
-                        <div>
+                        <div className={style.divDescription}>
                             <h2>Name: </h2>
                             <p>{selector.name}</p>
                             <h2>Summary: </h2>
@@ -43,7 +44,7 @@ export default function Detail(){
                         </div>
 
                         <div>
-                            <Link to='/home'><button>Home</button></Link> 
+                            <Link to='/home'><button className={style.buttonHome}>Home</button></Link> 
                         </div>
 
                     </div>

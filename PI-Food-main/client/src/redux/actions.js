@@ -24,7 +24,7 @@ export const getRecipeName = (name) => {
     return (dispatch) => {
         
         dispatch({type:GET_RECIPE_DETAIL, payload: []})
-        axios.get(`http://localhost:3001/recipes/?name=${name}`)
+        axios.get('http://localhost:3001/recipes/?name='+name)
         .then((res)=> res.data)
         .then((data) => dispatch({type: GET_RECIPE_BY_NAME, payload: data}))
         

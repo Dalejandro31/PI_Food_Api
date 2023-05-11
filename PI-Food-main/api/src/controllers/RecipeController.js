@@ -9,7 +9,7 @@ const STATUS_SERVER_ERROR=500;
 
 
 const urlAPI =`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`; 
-const mock = `https://run.mocky.io/v3/4bc7ed61-deb6-4118-b2bb-7b811243f028`;
+
 
 async function getRecipeId(id){
     
@@ -25,6 +25,7 @@ async function getRecipeId(id){
                 const dataRecived={
                             id: data.id,
                             name: data.title,
+                            image: data.image,
                             summary: data.summary.replace(/<\/?[^>]+(>|$)/g, ""),
                             healthscore: data.healthScore,
                             steps: data.instructions.replace(/<\/?[^>]+(>|$)/g, ""),

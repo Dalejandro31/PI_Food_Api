@@ -11,13 +11,13 @@ export default function Validation(newRecipe){
     );
     let error = {}
     //validar name
-    if (newRecipe.name === '') {
-        error.name = 'Name is required'
+    if (newRecipe.name === ''  && regex.test(newRecipe.name)) {
+        error.name = 'Name is required and not have any numerical characters'
+        
+        
     }
 
-    if(regex.test(newRecipe.name)){
-        error.name = 'The recipe name must not have any numerical characters'
-    }
+    
 
     //validar summary
     if (newRecipe.summary === '') {
@@ -35,13 +35,14 @@ export default function Validation(newRecipe){
     }
 
     //validar image
-    if (newRecipe.image === '') {
-        error.image = 'Image is required'
+    if (newRecipe.image === '' && !regex2.test(newRecipe.image)) {
+        error.image = 'Image is required and provide an Url'
+    }
+    //validar Diets.
+    if(newRecipe.diets === null){
+        error.diets = 'Diets is required'
     }
 
-    if(!regex2.test(newRecipe.image)){
-        error.image = 'You must provide an URL'
-    }
 
     return error;
 }

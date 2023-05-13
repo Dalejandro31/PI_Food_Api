@@ -7,7 +7,7 @@ const STATUS_ERROR=404;
 
 //get por ID ====> ruta del get ==> /recipes/:idRecipe
 async function getRecipeById(req, res){
-
+    //obtengo por parametros el id de la receta, esta funcion se encargara de buscar por el id 
     const { id } = req.params; 
     
     try {
@@ -19,12 +19,13 @@ async function getRecipeById(req, res){
 }
 // get de todas las recetas
 async function getAllRecipe(req, res){
+    //por medio de la consulta query obtenemos el parametro del nombre de la receta
     const {name} =req.query;
-
+    // se hace uso de las funciones get api y recipedb y  se hace uso de promise.all para que se ejecuten en paralelo y ambas se resuelvan
     const [api, db] = await Promise.all([getApi(),recipeDb()]);
 
     const allRecipes = [...api, ...db];
-
+    
     if(name){
         try {
             let filterRecipe= allRecipes.filter((x)=>
@@ -68,11 +69,6 @@ async function postRecipe(req, res){
             steps,
             image
         }); 
-        // diets?.map(async (e) => {
-        //     console.log("::::::::",newRecipe);
-        //     let dietDb = await Diets.findOne({where: {name: e}})
-        //     await newRecipe.addDiets(dietDb)
-        // })
 
         if(diets){
             console.log("***********::",newRecipe);

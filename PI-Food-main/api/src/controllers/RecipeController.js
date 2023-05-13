@@ -7,7 +7,7 @@ const STATUS_OK= 200;
 const STATUS_ERROR=404;
 const STATUS_SERVER_ERROR=500;
 
-
+//por medio  de la url hago las solicitudes a  la api para obtener la informacion  de las recetas
 const urlAPI =`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`; 
 
 
@@ -84,21 +84,10 @@ async function recipeDb(){
         }));
 }
 
-// get todas las recetas api & BD
-
-// async function allRecipes(){
-
-//     const Api = await getApi();
-//     const DB = await recipeDb();
-//     const all = DB.concat(Api);
-//     return all;
-    
-// }
 
 
 module.exports = {
     getRecipeId,
     getApi,
     recipeDb,
-    //allRecipes
 }

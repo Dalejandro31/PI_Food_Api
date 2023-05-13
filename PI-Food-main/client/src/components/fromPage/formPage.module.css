@@ -60,11 +60,21 @@
     transition: width 0.3s ease-in-out;
 }
 
-.inputForms:focus {
+/* .inputForms:focus {
     width: 250px;
-}
+} */
 
 .labelForms{
     margin-right: 2rem;
     min-width: 100px;
+}
+
+.inputFormsEmpty{
+    border: 2px solid red;
+}
+
+.spanInputError{
+    color: red;
+    font-weight: bold;
+    font-size: .8rem;
 }

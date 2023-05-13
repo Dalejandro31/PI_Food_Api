@@ -6,9 +6,10 @@ export default function Pagination({ currentPage, elementsPerPage, totalElements
     const pages = [...Array(totalPages).keys()].map(page => page + 1);  
     return (
     <div className={style.divPagination}>
-       {pages.map((page) => (
+      {pages.map((page) => (
               <button key={page} onClick={() => onPageChange(page)} className={style.pagePagination}>{page}</button>
           ))}
     </div>
   )
 }
+///estoy volviendo a llamar todo el estado original 

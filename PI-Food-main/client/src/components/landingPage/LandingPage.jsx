@@ -6,7 +6,7 @@ function welcomePage(){
     return(
         <div className={style.contenedorPadre}>
             <div className={style.contenedorInfoPi}>
-                //contiene la informacion sobre el pi
+                <h1>Welcome! to the food Api of SoyHenry</h1>
             </div>
             <Link to='/home'><button type='submit' className={style.buttonHomePage}>Home Page</button></Link>    
         </div>

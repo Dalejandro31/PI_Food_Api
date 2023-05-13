@@ -32,7 +32,8 @@ const [error, setError] = useState({
   summary: '',
   healthscore: '',
   steps: '',
-  image: ''
+  image: '',
+  diets
 })
 
 const handleChange = (e)=>{
@@ -44,6 +45,10 @@ const handleChange = (e)=>{
     ...newRecipe,
     [e.target.name] : e.target.value
   }))
+}
+
+const isFieldEmpty = (fieldName) => {
+  return newRecipe[fieldName].trim() === ''; 
 }
 
 const handleChecked = (e) =>{
@@ -58,7 +63,8 @@ const handleChecked = (e) =>{
       diets: newRecipe.diets.filter(x => x !== e.target.value)
     })
   }
-}     
+}
+
 const handleSubmit = (e) =>{
   e.preventDefault()
   axios.post('http://localhost:3001/recipes', newRecipe)
@@ -83,31 +89,41 @@ const handleSubmit = (e) =>{
         
           <div className={style.divInputname}>
             <label className={style.labelForms} htmlFor="name">Name: </label>
-            <input className={style.inputForms} value={newRecipe.name} type="text" name='name' onChange={handleChange} /> 
-              {error.name && <span className={style.spanInputError}>{error.name}</span>}
+            <input className={`${style.inputForms} ${isFieldEmpty('name') && style.inputFormsEmpty}`} value={newRecipe.name} type="text" name='name' onChange={handleChange} />
+          </div>
+          <div>
+            {error.name && <span className={style.spanInputError}>{error.name}</span>}
           </div>
 
           <div className={style.divInputForms}>
             <label className={style.labelForms} htmlFor="summary">Summary: </label>
-            <input className={style.inputForms} value={newRecipe.summary} type="text" name='summary' onChange={handleChange}/>
-              {error.summary && <span className={style.spanInputError}>{error.summary}</span>}
+            <input className={`${style.inputForms} ${isFieldEmpty('name') && style.inputFormsEmpty}`} value={newRecipe.summary} type="text" name='summary' onChange={handleChange}/>
+          </div>
+          <div>
+            {error.summary && <span className={style.spanInputError}>{error.summary}</span>}
           </div>
 
           <div className={style.divInputForms}>
             <label className={style.labelForms} htmlFor="healthscore">Healthscore: </label>
-            <input className={style.inputForms} value={newRecipe.healthscore} type="number" name='healthscore' onChange={handleChange}/>
+            <input className={`${style.inputForms} ${isFieldEmpty('name') && style.inputFormsEmpty}`} value={newRecipe.healthscore} type="number" name='healthscore' onChange={handleChange}/>
+          </div>
+          <div>
             {error.healthscore && <span className={style.spanInputError}>{error.healthscore}</span>}
           </div>
 
           <div className={style.divInputForms}>
             <label className={style.labelForms} htmlFor="steps">Steps: </label>
-            <input className={style.inputForms} value={newRecipe.steps} type="text" name='steps' onChange={handleChange}/>
-              {error.steps && <span className={style.spanInputError}>{error.steps}</span>}
+            <input className={`${style.inputForms} ${isFieldEmpty('name') && style.inputFormsEmpty}`} value={newRecipe.steps} type="text" name='steps' onChange={handleChange}/>
+          </div>
+          <div>
+            {error.steps && <span className={style.spanInputError}>{error.steps}</span>}
           </div>
 
           <div className={style.divInputForms}>
             <label className={style.labelForms} htmlFor="image">Image: </label>
-            <input className={style.inputForms} value={newRecipe.image} type="text" name='image' onChange={handleChange}/>
+            <input className={`${style.inputForms} ${isFieldEmpty('name') && style.inputFormsEmpty}`} value={newRecipe.image} type="text" name='image' onChange={handleChange}/>
+          </div>
+          <div>
             {error.image && <span className={style.spanInputError}>{error.image}</span>}
           </div>
         
@@ -126,8 +142,9 @@ const handleSubmit = (e) =>{
                   ))
                   : undefined
               }
-                {error.diets && <span>{error.diets}</span>}
             </div>
+              {newRecipe.diets.length === 0 && (<span className={style.spanInputError}>Select at least one diet</span>)}
+
 
             <div className={style.divButtonAndImgForms}>
               {

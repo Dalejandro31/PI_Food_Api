@@ -70,25 +70,25 @@ const configReducer = (state= initialState,action) =>{
                 case ORDER_ASC:
                     return{
                         ...state,
-                        recipes: state.filterRecipe.sort((a,b) => a.name.localeCompare(b.name))
+                        recipes: state.recipes.slice().sort((a,b) => a.name.localeCompare(b.name))
                     };
                 
                 case ORDER_DESC:
                     return{
                         ...state,
-                        recipes: state.filterRecipe.sort((a,b) => b.name.localeCompare(a.name))
+                        recipes: state.recipes.slice().sort((a,b) => b.name.localeCompare(a.name))
                     };
                 
                 case HEALTSC_ASC:
                     return{
                         ...state,
-                        recipes: state.filterRecipe.sort((a,b) => b.healthscore - a.healthscore)
+                        recipes: state.recipes.slice().sort((a,b) => b.healthscore - a.healthscore)
                     };
                 
                 case HEALTSC_DES:
                     return{
                         ...state,
-                        recipes: state.filterRecipe.sort((a,b) => a.healthscore - b.healthscore)
+                        recipes: state.recipes.slice().sort((a,b) => a.healthscore - b.healthscore)
                     }
 
 //---------------------->> post <<--------------------------------------------------------------------------

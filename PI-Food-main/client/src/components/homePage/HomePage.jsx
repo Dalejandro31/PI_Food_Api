@@ -63,7 +63,6 @@ function Home(){
     }
 
     const handleHealtSc = (e)=>{
-        console.log('entre al handlehs');
         e.preventDefault()
         e.target.value === 'hsasc'
         ? dispatch(healtScAsc(e.target.value))

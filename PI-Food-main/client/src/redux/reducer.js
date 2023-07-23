@@ -8,19 +8,33 @@ import { GET_ALL_RECIPES,
     GET_API,
     HEALTSC_ASC,
     HEALTSC_DES,
-    POST_RECIPE} from './actions-type';
+    POST_RECIPE,
+    POST_LOGIN,
+    GET_USERS} from './actions-type';
 
     const initialState={
         recipes:[],
         diets:[],
         recipeDetail:[],
         filterRecipe:[],
+        users:[],
+        login:[],
     }
 
 const configReducer = (state= initialState,action) =>{
 //---------->> RECIPESS <<-------------------------
 
         switch(action.type){
+            case GET_USERS:
+                return{
+                    ...state,
+                    users: action.payload
+                };
+            case POST_LOGIN:
+                return{
+                    ...state,
+                    login:{email: action.payload.email},
+                };
             case GET_API:
                 let recipeFilterData= action.payload === 'db' ? 
                 state.filterRecipe.filter(e => e.createdInDb) 

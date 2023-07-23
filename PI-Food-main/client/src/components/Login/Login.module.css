@@ -1,0 +1,197 @@
+:root {
+    --primary: #0077FF;
+    --dark: #000;
+    --b: 3px;   /* grosor del borde */
+  --s: .45em; /* tamaño de la esquina */
+  --color: #373B44;
+  }
+.contenedorPadre{
+    background-image: url('../../images/login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.buttonLogin {
+    padding: calc(0.5em + var(--s)) calc(0.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0)
+      var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: 0.3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: 0.6em;
+    font-size: 16px;
+    border: 0;
+    margin-bottom: .5rem;
+  
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .buttonLogin:hover,
+  .buttonLogin:focus-visible {
+    /* Ajustamos los estilos del botón en el hover y el focus */
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: 0.05em;
+  }
+  
+  .buttonLogin:active {
+    /* Ajustamos los estilos del botón en el click (active) */
+    background: var(--color);
+    color: #fff;
+  }
+
+.login{
+    
+    height: 60%;
+    width: 40%;
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    box-shadow: 0 30px 50px 0 rgba(0, 0, 0, 0.50);
+}
+.imgLogin{
+ 
+ width: 50%;
+ height: 100%;
+ background-image: url("../../images/loginImg.jpg");   
+ background-size: cover;
+ background-repeat: no-repeat;
+ border-top-left-radius: 25px;
+ border-bottom-left-radius: 5px;
+
+}
+
+.componetsLogin{
+    width: 50%;
+    height: 100%;
+    background: #f9f7f3;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 5px;
+
+
+}
+
+.contendorInputs{
+    
+    height: 40%;
+    width: 90%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+
+.inp {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 280px;
+    border-radius: 3px;
+    overflow: hidden;
+    border-bottom: .5px solid black;
+
+  }
+  
+  /* Estilo para el label del input */
+  .inp .label {
+    position: absolute;
+    top: 20px;
+    left: 12px;
+    font-size: 16px;
+    color: rgba(var(--dark), 0.5);
+    font-weight: 500;
+    transform-origin: 0 0;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    
+  }
+  
+  /* Estilo para el fondo de enfoque del input */
+  .inp .focus-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--dark), 0.05);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    
+    
+  }
+  
+  /* Estilo para el input */
+  .inp input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+    padding: 16px 12px 0 12px;
+    height: 56px;
+    font-size: 16px;
+    font-weight: 400;
+    background: rgba(var(--dark), 0.02);
+    box-shadow: inset 0 -1px 0 rgba(var(--dark), 0.3);
+    color: var(--dark);
+    transition: all 0.15s ease;
+    
+  }
+  
+  /* Estilo para el input en hover */
+  .inp input:hover {
+    background: rgba(var(--dark), 0.04);
+    box-shadow: inset 0 -1px 0 rgba(var(--dark), 0.5);
+    
+  }
+  
+  /* Estilo para el input con contenido (no es placeholder) */
+  .inp input:not(:placeholder-shown) + .label {
+    color: rgba(var(--dark), 0.5);
+    transform: translate3d(0, -12px, 0) scale(0.75);
+    
+  }
+  
+  /* Estilo para el input en focus */
+  .inp input:focus {
+    background: rgba(var(--dark), 0.05);
+    outline: none;
+    box-shadow: inset 0 -2px 0 var(--primary);
+    
+  }
+  
+  /* Estilo para el label cuando el input está en focus */
+  .inp input:focus + .label {
+    color: var(--primary);
+    transform: translate3d(0, -12px, 0) scale(0.75);
+  }
+  
+  /* Estilo para la animación del focus-bg */
+  .inp input:focus + .label + .focus-bg {
+    transform: scaleX(1);
+    transition: all 0.1s ease;
+  }
+  

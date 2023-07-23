@@ -1,48 +1,30 @@
 .cardContainer{
-    border: 5px solid black;
     display:inline-table;
-    margin-top: 2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    width: 400px;
-    height: 350px;
-    border-radius: 10px;
-    background: #fdfcdc;
-    
+    margin-top: 1.5rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    width: 21%;
+    height: 500px;
+    border-radius: 25px;
+    background: #fffdef;
 }
-
+.divImg{
+    height: 50%;
+    width: 100%;
+     
+}
 .name{
     font-style: oblique;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.buttonDetails {
-    background-color: #964b00;
-    color: white;
-    font-size: 12px;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 10px;
-    text-shadow: 0px 0px 10px #ffcc66;
-    box-shadow: 0px 0px 10px #ffcc66;
-    transition: all 0.3s ease-in-out;
-    width: 400px;
-}
-  
-.buttonDetails:hover {
-    background-color: #ffcc66;
-    color: #964b00;
-    text-shadow: 0px 0px 20px #964b00;
-    box-shadow: 0px 0px 20px #964b00;
-}
-  
-.buttonDetails:active {
-    transform: scale(0.9);
-}
 
 .image{
-    filter: drop-shadow(0 0 20px #121212);
-    border-radius: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 100%;
+    width: 100%;
+
 }
 
 

@@ -1,42 +1,51 @@
-body{
+body {
     height: 100%;
     margin: 0%;
     padding: 0%;
-}
-.contenedorPadre{
+  }
+  
+  .contenedorPadre {
     background-image: url('../../images/welcomePage.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
-    /* justify-content: center;  */
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     position: absolute;
-    top:0%;
+    top: 0%;
     left: 0%;
     margin: 0%;
     padding: 0%;
-    width: 100vw; 
+    width: 100vw;
     height: 100vh;
-    
-}
-
-.contenedorInfoPi{
-    background: linear-gradient(135deg rgba(255,255,255,0.1), rgba(255,255,255,0));
+  }
+  
+  .contenedorInfoPi {
+    background: linear-gradient(135deg rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    width: 100%;
+    height: 80%;
     justify-content: center;
     align-items: center;
-    margin:20px;
-    margin-left: 10rem;
-    width: 400px;
-    height: 250px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 32px;
     float: left;
-}
-
-.buttonHomePage{
+    margin-bottom: 2rem;
+    color: #f1faee;
+    display: flex;
+ 
+  }
+  
+  .contenedorInfoPi h2,
+  .contenedorInfoPi h3 {
+    text-align: justify;
+  }
+  
+  .buttonHomePage {
+    height: 150%;
     font-size: 1em;
     padding: 0.5em 1em;
     border: none;
@@ -46,14 +55,11 @@ body{
     cursor: pointer;
     position: relative;
     transition: all 0.2s ease-in-out;
-
-    box-shadow: 0 0 15px #0c5dc6,
-                0 0 10px #bec9be,
-                0 0 5px  #ced5ce;
-}
-
-
-.buttonHomePage::before{
+  
+    box-shadow: 0 0 15px #0c5dc6, 0 0 10px #bec9be, 0 0 5px #ced5ce;
+  }
+  
+  .buttonHomePage::before {
     content: '';
     position: absolute;
     top: -2px;
@@ -65,17 +71,32 @@ body{
     border-radius: 5px;
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
-}
-
-.buttonHomePage:hover::before{
+  }
+  
+  .buttonHomePage:hover::before {
     opacity: 0.5;
-}
-
-.buttonHomePage:active {
+  }
+  
+  .buttonHomePage:active {
     transform: scale(0.95); /* Shrink the button slightly */
     box-shadow: none; /* Remove the shadow */
-}
-
-.buttonHomePage:active::before {
+  }
+  
+  .buttonHomePage:active::before {
     opacity: 1; /* Make the neon border fully visible */
-}
+  }
+  
+  .contenedorInfo {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+  }
+  
+  .text {
+    height: 90%;
+    width: 90%;
+    overflow: auto; /* Add this line to allow scrolling when content overflows */
+  }
+  

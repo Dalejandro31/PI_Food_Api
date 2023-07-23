@@ -7,13 +7,17 @@ function Card(props){
     const{id, name,image, diets, healthscore } = props
     return (
         <div className={style.cardContainer}>
-            <h3 className={style.name}>{name}</h3>
-            <img className={style.image} src={image} alt={name} />
-            <h3>Diets:</h3>
-            <p className={style.name}>{diets.join(',')}</p>
-            <h3>HealthScore:</h3>
-            <label>{healthscore}</label>
-            <div><Link to={`/detail/${id}`}><button className={style.buttonDetails}>DETAILS</button></Link></div>
+            <div className={style.divImg}>
+            <Link to={`/detail/${id}`}> <img className={style.image} src={image} alt={name} /></Link>
+            </div>
+            <div className={style.divInfo}>
+                <h3 className={style.name}>{name}</h3>
+                <h3>Diets:</h3>
+                <p className={style.name}>{diets.join(',')}</p>
+                <h3>HealthScore:</h3>
+                <label>{healthscore}</label>
+            </div>
+            
         </div>
     )
 }

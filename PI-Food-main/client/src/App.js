@@ -4,6 +4,8 @@ import Home from './components/homePage/HomePage.jsx'
 import Detail from './components/detailPage/DetailPage.jsx';
 import Forms from './components/fromPage/FormPage';
 import { Route,Routes } from 'react-router-dom';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/detail/:id' element={<Detail/>}/>
         <Route path='/from' element={<Forms/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
       </Routes>
     </div>
   ); 

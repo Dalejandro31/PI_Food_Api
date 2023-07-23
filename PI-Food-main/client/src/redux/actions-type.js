@@ -9,6 +9,8 @@ export const GET_API = "GET_API";
 export const HEALTSC_ASC = "HEALTSC_ASC";
 export const HEALTSC_DES = "HEALTSC_DES";
 export const POST_RECIPE = "POST_RECIPE";
+export const POST_LOGIN = "POST_LOGIN";
+export const GET_USERS = "GET_USERS";
 
 
 

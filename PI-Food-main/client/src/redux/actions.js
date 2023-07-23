@@ -9,7 +9,9 @@ import { GET_ALL_RECIPES,
     GET_API,
     HEALTSC_ASC,
     HEALTSC_DES,
-    POST_RECIPE} from './actions-type';
+    POST_RECIPE,
+    GET_USERS,
+    POST_LOGIN} from './actions-type';
 
 //ACTIONS RECIPES------------------------------------------------------------->>
 export const getAllRecipes= () =>{
@@ -101,4 +103,38 @@ export const postRecipe = (payload) =>{
         type: POST_RECIPE,
         payload: payload
     }
+}
+//Actions Login -------------------------------->>>>
+
+export const postLogin = (newLogin) =>{
+    return async (dispatch) => {
+        try {
+          const response = await axios.post('http://localhost:3001/users/login', newLogin);
+          const { usuario, email, id, nombre} = response.data;
+          dispatch({
+            type: POST_LOGIN,
+            payload: {
+             usuario, email, id, nombre
+            },
+          });
+          alert('Login exitoso')        
+        } catch (error) {
+         
+          alert(`Error al iniciar sesión: ${error}`);
+          
+        }
+      };
+}
+
+export const getUsers = () =>{
+    return async (dispatch) => {
+        try {
+          const response = await axios.get(`http://localhost:3001/users`);
+          let usuarios = response.data?.map((e) => e);
+          dispatch({ type: GET_USERS, payload: usuarios });
+        } catch (error) {
+          console.log(`error ${error}`);
+          console.log(`no fundaciones creadas `);
+        }
+      };
 }

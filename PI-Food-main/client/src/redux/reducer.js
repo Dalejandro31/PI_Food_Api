@@ -10,7 +10,8 @@ import { GET_ALL_RECIPES,
     HEALTSC_DES,
     POST_RECIPE,
     POST_LOGIN,
-    GET_USERS} from './actions-type';
+    GET_USERS,
+    POST_USERS} from './actions-type';
 
     const initialState={
         recipes:[],
@@ -22,9 +23,14 @@ import { GET_ALL_RECIPES,
     }
 
 const configReducer = (state= initialState,action) =>{
-//---------->> RECIPESS <<-------------------------
+//---------->> RECIPES <<-------------------------
 
         switch(action.type){
+            case POST_USERS:
+                return{
+                    ...state,
+                    users: state.users.concat(action.payload),
+                }
             case GET_USERS:
                 return{
                     ...state,

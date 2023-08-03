@@ -1,0 +1,8 @@
+.pagePagination{
+    background: #dedbd2;
+    margin-left: .2rem;
+    margin-right: .2rem;
+    border-radius: 10px/30px;
+    border: none;
+    box-shadow: 0 8px 32px 0 rgb(210, 204, 236);
+}

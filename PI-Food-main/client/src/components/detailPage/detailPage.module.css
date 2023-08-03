@@ -1,48 +1,61 @@
 .contenedorPadre{
-    background: #7a6c5d;
+    background-image: url('../../images/home2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center;
-    width: auto; 
-    height: auto;
+    width: 100vw; 
+    height: 100vh;
 }
 
 .contenedorHijo{
-    width: 80%;
-    max-width: 80%;
-    height: 70%;
-    max-height: 70%;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-    background-color: #bcac9b;
-    background: linear-gradient(135deg rgba(255,255,255,0.1), rgba(255,255,255,0));
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 32px;
+    width: auto;
+    height: auto;
+    border: none;
+    border-radius: 50px;
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .divImagen{
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    width: 40%;
+    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .image{
-    filter: drop-shadow(0 0 20px #121212);
     border-radius: 10px;
+    width: 100%;
 }
 
 .divDescription{
-    border: 2px solid;
-    width: 70%;
-    max-width: 70%;
     border-radius: 20px;
+    text-align: justify;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.divDescription h1,
+.divDescription h2 {
+    color: #c9ada7;
+}
+
+.divDescription h3{
+    color: #f8f8f8;
+    font-family: "Courier New", Courier, monospace;
+}
+.contentDescription{
+    background: linear-gradient(135deg rgba(15, 12, 12, 0.856), rgba(26, 18, 18, 0.514));
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    width: 55%;
+    border-radius: 20px;
+    display: flex;
 }
 
 .buttonHome {
@@ -56,8 +69,6 @@
     box-shadow: 0px 0px 10px #ffcc66;
     transition: all 0.3s ease-in-out;
     width: 400px;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
 }
 
 .buttonHome:hover {

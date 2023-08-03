@@ -14,7 +14,7 @@
     width: 40%;
     background: linear-gradient(135deg, rgba(255, 250, 250, 0.192), rgba(10, 1, 1, 0.582));
     -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.514);
     align-items: center;
     display: flex;
@@ -34,7 +34,7 @@ input.names{
     height: 110%;
 
 }
-input{
+input, textarea{
     border: solid 1px #ffffff;
     background: linear-gradient(135deg, rgba(233, 227, 152, 0.493), rgba(233, 228, 152, 0.274));
     -webkit-backdrop-filter: blur(20px);

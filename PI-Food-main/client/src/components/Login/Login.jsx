@@ -9,7 +9,7 @@ export default function Login() {
 
     const [input, setInput] = useState({
         email:"",
-        contraseña:""
+        password:""
     });
     useEffect(() => {
         dispatch(getUsers());
@@ -19,7 +19,7 @@ export default function Login() {
     const users = useSelector((state) => state.users);
     const userMap = users.map((e) => ({
         email:e.email,
-        contraseña: e.contraseña,
+        password: e.password,
     }));
     console.log(userMap)
     
@@ -35,7 +35,7 @@ export default function Login() {
         event.preventDefault();
 
         const isUser = userMap.find(
-            (user) => user.email === input.email && user.contraseña === input.contraseña
+            (user) => user.email === input.email && user.password === input.password
         );
         if(isUser){
             await dispatch(postLogin(input))
@@ -68,18 +68,18 @@ export default function Login() {
                         <label htmlFor="inp" className={style.inp}>
                             <input 
                                 type="text" 
-                                value={input.contraseña}
-                                name="contraseña"
+                                value={input.password}
+                                name="password"
                                 onChange={handleChange}
                                 id="inp"  
                                 placeholder="&nbsp;"
                             />
-                            <span className={style.label}>Contraseña</span>
+                            <span className={style.label}>contraseña</span>
                             <span className={style.focusBg}></span>
                         </label>    
                     </div>
                     <button type="submit" className={style.buttonLogin}>Ingresar</button>
-                    <Link to='/Register'>Crea tu cuenta aqui</Link>
+                    <Link to='/register'>Crea tu cuenta aqui</Link>
                 </div>
                
             </form>

@@ -18,7 +18,10 @@ function NavBar(){
     }
     return(
         <div className={style.contenedorNav}>
-                <Link to='/'><button className={style.butonLandingPage}>LANDING PAGE</button></Link>
+            <div className={style.buttonOptions}>
+                <Link to='/'><button className={style.butonLandingPage}>LOGOUT</button></Link>
+                <Link to='/from'><button className={style.butonLandingPage}>CREATE YOUR RECIPE</button></Link>
+            </div>    
             <div className={style.searchContainer}>
                 <input className={style.inputSearch} type="text" value={recipeName.recipeValue} onChange={(e)=> handleSearch(e)} placeholder='recipes..' />
                 <button className={style.butonSearch} onClick={onSearch}>SEARCH</button>

@@ -13,8 +13,8 @@ export default function Detail(){
 
     const {id} = useParams();
     const selector = useSelector(state => state.recipeDetail);
+    console.log(selector)
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(getRecipeDetail(id));
     },[dispatch,id])
@@ -25,28 +25,25 @@ export default function Detail(){
             {
                 selector.hasOwnProperty('name')?(
                     <div className={style.contenedorHijo}>
-                        <h1>DETAILS</h1>
                         <div className={style.divImagen}>
                             <img className={style.image} src={selector.image} alt={selector.name}/>
                         </div>
                         
-                        <div className={style.divDescription}>
-                            <h2>Name: </h2>
-                            <p>{selector.name}</p>
-                            <h2>Summary: </h2>
-                            <p>{selector.summary}</p>
-                            <h2>HealthScore</h2>
-                            <p>{selector.healthscore}</p>
-                            <h2>Steps: </h2>
-                            <p>{selector.steps}</p>
-                            <h2>Diets: </h2>
-                            <p>{selector.diets}</p>
+                        <div className={style.contentDescription}>
+                            <div className={style.divDescription}>
+                                <h1>{selector.name}</h1>
+                                <h2>Summary: </h2>
+                                <h3>{selector.summary}</h3>
+                                <h2>Steps: </h2>
+                                <h3>{selector.steps}</h3>
+                                <h2>HealthScore</h2>
+                                <h3>{selector.healthscore}</h3>
+                                <h2>Diets: </h2>
+                                <h3>{selector.diets}</h3>
+                                <Link to='/home'><button className={style.buttonHome}>Home</button></Link> 
+                            </div>
                         </div>
-
-                        <div>
-                            <Link to='/home'><button className={style.buttonHome}>Home</button></Link> 
-                        </div>
-
+                        
                     </div>
                 ) : undefined
             }

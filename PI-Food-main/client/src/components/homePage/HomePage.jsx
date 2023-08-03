@@ -23,11 +23,26 @@ function Home(){
     const diets = useSelector((state) => state.diets)
     const [/* ordered */, setOrdered] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
-    const [elementsPerPage, /* setElementsPerPage */] = useState(9)
+    const [elementsPerPage, /* setElementsPerPage */] = useState(12)
+    const [checkboxes, setCheckboxes] = useState({
+        alphabetical: false,
+        reverseAlphabetical: false,
+        healthier: false,
+        lessHealthy: false,
+        api: false,
+        db: false,
+      });
     
     const indexOfLastElement = currentPage * elementsPerPage
     const indexOfFirstElement = indexOfLastElement - elementsPerPage
     const currentElements = allRecipes.slice(indexOfFirstElement, indexOfLastElement)
+
+    const updateCheckbox = (name, value) => {
+        setCheckboxes((prevCheckboxes) => ({
+          ...prevCheckboxes,
+          [name]: value,
+        }));
+      };
     
     const paginationButtonNext = (e) => {
         e.preventDefault();
@@ -42,6 +57,29 @@ function Home(){
     const handlePageCh = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
+    useEffect(() => {
+        // Sorting A-Z or Z-A
+        if (checkboxes.alphabetical) {
+          dispatch(orderAsc("Asc"));
+        } else if (checkboxes.reverseAlphabetical) {
+          dispatch(orderDesc("Desc"));
+        }
+    
+        // Sorting healthier or less healthy
+        if (checkboxes.healthier) {
+          dispatch(healtScAsc("hsasc"));
+        } else if (checkboxes.lessHealthy) {
+          dispatch(healtScDes("hsdesc"));
+        }
+    
+        // Getting data from API or DB
+        if (checkboxes.api) {
+          dispatch(getApi("api"));
+        } else if (checkboxes.db) {
+          dispatch(getApi("db"));
+        }
+      }, [dispatch, checkboxes]);
+
     
     useEffect(()=>{
         dispatch(getAllRecipes())
@@ -54,59 +92,37 @@ function Home(){
         setOrdered(`order ${e.target.value}`)
     }
     
-    const handleSort = (e) =>{
-        e.preventDefault()
-        e.target.value === 'Asc'
-        ? dispatch(orderAsc(e.target.value))
-        : dispatch(orderDesc(e.target.value))
-        setOrdered(`order ${e.target.value}`)
-    }
+    // const handleSort = (e) =>{
+    //     e.preventDefault()
+    //     e.target.value === 'Asc'
+    //     ? dispatch(orderAsc(e.target.value))
+    //     : dispatch(orderDesc(e.target.value))
+    //     setOrdered(`order ${e.target.value}`)
+    // }
 
-    const handleHealtSc = (e)=>{
-        e.preventDefault()
-        e.target.value === 'hsasc'
-        ? dispatch(healtScAsc(e.target.value))
-        : dispatch(healtScDes(e.target.value))
-        setOrdered(`order ${e.target.value}`)
-        console.log(healtScAsc());
-    }
+    // const handleHealtSc = (e)=>{
+    //     e.preventDefault()
+    //     e.target.value === 'hsasc'
+    //     ? dispatch(healtScAsc(e.target.value))
+    //     : dispatch(healtScDes(e.target.value))
+    //     setOrdered(`order ${e.target.value}`)
+    //     console.log(healtScAsc());
+    // }
     
-    const handleApi = (e) =>{
-        e.preventDefault()
-        dispatch(getApi(e.target.value))
-        setOrdered(`order ${e.target.value}`)
-    }
+    // const handleApi = (e) =>{
+    //     e.preventDefault()
+    //     dispatch(getApi(e.target.value))
+    //     setOrdered(`order ${e.target.value}`)
+    // }
 
     return(
         <div className={style.homeContainer}>
             <Navs/>
-            <div className={style.fromButton}>
-                <Link to='/from'>
-                    <button className={style.buttonsForm} >Form</button>
-                </Link>
-            </div>
-
-            <div className={style.orderButtons}>
-                <div className={style.alfabeticOrder}>
-                    <button className={style.buttonsForm} value='Asc' onClick={(e)=> handleSort(e)}>A-Z</button>
-                    <button className={style.buttonsForm} value='Desc' onClick={(e)=> handleSort(e)}>Z-A</button>
-                </div>
-
-                <div className={style.healtScOrder}>
-                    <button className={style.buttonsForm} value='hsasc' onClick={(e)=> handleHealtSc(e)}>Healthier</button>
-                    <button className={style.buttonsForm} value='hsdesc' onClick={(e)=> handleHealtSc(e)}>less Healthy</button>
-                </div>
-
-                <div className={style.dataApiorDb}>
-                    <button className={style.buttonsForm} value='api' onClick={(e)=> handleApi(e)}>Api</button>
-                    <button className={style.buttonsForm} value='db' onClick={(e)=> handleApi(e)}>Db</button>
-                </div>
-            </div>
 
             <div className={style.homeSelector}>
                 <select
                 onChange={(e)=> handleDiets(e)}
-                className='dietas' >
+                className={style.selector} >
                     <option value='All'>All recipes</option>
                     {
                         diets?.map((e, index)=>(
@@ -117,60 +133,119 @@ function Home(){
                     }
                 </select>    
             </div>
+                    
 
-            <div className={style.paginationHome}>
-                <div className={style.buttonPrevHome}>
-                    {
-                        currentPage === 1 ? (<span></span>) : (<button className='' onClick={e=> paginationButtonPrev(e)}>Prev</button>)
-                    }
+            <div className={style.homeContainer2}>
+                <div className={style.sideBar}>
+                    <h2> Organize Your Recipes </h2>
+                    <div className={style.alphabeticOrder}>
+                        <label className={style.labelOrder}>
+                        <input
+                            type="checkbox"
+                            checked={checkboxes.alphabetical}
+                            onChange={(e) => updateCheckbox("alphabetical", e.target.checked)}
+                        />
+                            A-Z
+                        </label>
+                        
+                        <label className={style.labelOrder}>
+                        <input
+                            type="checkbox"
+                            checked={checkboxes.reverseAlphabetical}
+                            onChange={(e) => updateCheckbox("reverseAlphabetical", e.target.checked)}
+                        />
+                            Z-A
+                        </label>
+                    </div>
+                    <div className={style.alphabeticOrder}>
+                        <label className={style.labelOrder}>
+                        <input
+                            type="checkbox"
+                            checked={checkboxes.healthier}
+                            onChange={(e) => updateCheckbox("healthier", e.target.checked)}
+                        />
+                            Healthier
+                        </label>
+                        <label className={style.labelOrder}>
+                        <input
+                            type="checkbox"
+                            checked={checkboxes.lessHealthy}
+                            onChange={(e) => updateCheckbox("lessHealthy", e.target.checked)}
+                        />
+                            Less Healthy
+                        </label>
+                    </div>
+                    <div className={style.alphabeticOrder}>
+                        <label className={style.labelOrder}>
+                        <input
+                            type="checkbox"
+                            checked={checkboxes.api}
+                            onChange={(e) => updateCheckbox("api", e.target.checked)}
+                        />
+                            API
+                        </label>
+                        <label className={style.labelOrder}>
+                        <input
+                            type="checkbox"
+                            checked={checkboxes.db}
+                            onChange={(e) => updateCheckbox("db", e.target.checked)}
+                        />
+                            DB
+                        </label>
+                    </div>
                 </div>
-
-                <div>
-                    <Pagination
-                    currentPage={currentPage}
-                    elementsPerPage={elementsPerPage}
-                    totalElements={allRecipes.length}
-                    onPageChange={handlePageCh}
-                    />
+                <div className={style.divCards}>
+                    
+                    <div className={style.cardsHome}>
+                        {
+                            currentElements?.length >= 1 ? (
+                                allRecipes.length=== 0 ? (
+                                    <h1>recipe not found</h1>
+                                ) : (
+                                    currentElements.map((e, index) =>(
+                                        <Card
+                                            key={index}
+                                            id={e.id}
+                                            name={e.name}
+                                            image={e.image}
+                                            diets={e.diets}
+                                            healthscore={e.healthscore}
+                                        />
+                                    ))
+                                )
+                            ): undefined
+                        }
+                    </div>
                 </div>
                 
-                <div>
-                    {
-                        Math.ceil(allRecipes.length / elementsPerPage) > currentPage ? (
-                            <button className='prevbuton' onClick={e => paginationButtonNext(e)}>next</button>
-                        ):(<span></span>)
-                        
-                    }
+                
+            </div>
+            <div className={style.paginationHome}>
+                    <div className={style.buttonPrevHome}>
+                        {
+                            currentPage === 1 ? (<span></span>) : (<button className={style.buttonPagination} onClick={e=> paginationButtonPrev(e)}>  {"<<"}  </button>)
+                        }
+                    </div>
+                    <div>
+                        <Pagination
+                        currentPage={currentPage}
+                        elementsPerPage={elementsPerPage}
+                        totalElements={allRecipes.length}
+                        onPageChange={handlePageCh}
+                        />
+                    </div>
+                    
+                    <div>
+                        {
+                            Math.ceil(allRecipes.length / elementsPerPage) > currentPage ? (
+                                <button className={style.buttonPagination} onClick={e => paginationButtonNext(e)}> {">>"} </button>
+                            ):(<span></span>)
+                            
+                        }
+                    </div>
                 </div>
-            </div>
-
-            <div className={style.cardsHome}>
-                {
-                    currentElements?.length >= 1 ? (
-                        allRecipes.length=== 0 ? (
-                            <h1>recipe not found</h1>
-                        ) : (
-                            currentElements.map((e, index) =>(
-                                <Card
-                                    key={index}
-                                    id={e.id}
-                                    name={e.name}
-                                    image={e.image}
-                                    diets={e.diets}
-                                    healthscore={e.healthscore}
-                                />
-                            ))
-                        )
-                    ): undefined
-                }
-            </div>
-
         </div>
     )
-
-    
-
-
 }
 
 export default Home

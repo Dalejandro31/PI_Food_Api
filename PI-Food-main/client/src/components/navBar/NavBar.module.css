@@ -4,7 +4,7 @@
     align-items: center;
     border-radius: 30px;
     width: 85%;
-    height: 40px;
+    height: 50px;
     box-shadow: 0px 2px 5px black, 0px -2px 5px rgba(241, 250, 238, 0.164), 0px 0px 20px rgba(54, 42, 42, 0.822);
     background: linear-gradient(135deg rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     -webkit-backdrop-filter: blur(20px);
@@ -16,8 +16,8 @@
 .butonLandingPage {
     background-color: #dedbd2;
     border-radius: 10px;
-    margin-right: auto;
-    margin-left: 20px;
+    height: 30px;
+    margin-left: 3rem;
 }
 
 .butonLandingPage:hover {
@@ -29,14 +29,17 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 20px;
+    width: 50%;
+
 }
 
 .inputSearch {
     border-radius: 10px;
     margin-right: 10px;
-    width: 150px;
+    width: 170px;
     transition: width 0.3s ease-in-out;
+    height: 20px;
+
 }
 
 .inputSearch:focus {
@@ -46,9 +49,17 @@
 .butonSearch {
     background-color: #dedbd2;
     border-radius: 10px;
+    height: 30px;
+    margin-right: 1rem;
 }
 
 .butonSearch:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease-in-out;
+}
+
+
+.buttonOptions{
+    width: 50%;
+    display: flex;
 }

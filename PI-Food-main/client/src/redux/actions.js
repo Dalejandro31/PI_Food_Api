@@ -11,7 +11,8 @@ import { GET_ALL_RECIPES,
     HEALTSC_DES,
     POST_RECIPE,
     GET_USERS,
-    POST_LOGIN} from './actions-type';
+    POST_LOGIN,
+    POST_USERS} from './actions-type';
 
 //ACTIONS RECIPES------------------------------------------------------------->>
 export const getAllRecipes= () =>{
@@ -105,7 +106,20 @@ export const postRecipe = (payload) =>{
     }
 }
 //Actions Login -------------------------------->>>>
-
+export const postUsers = (newUser) =>{
+    return async (dispatch) => {
+        try {
+            const response = await axios.post('http://localhost:3001/users', newUser);
+            dispatch({
+                type: POST_USERS,
+                payload: response.data,
+            })
+            alert('nuevo Usuario creado exitosamente' )
+        } catch (error) {
+            alert(`error: ${error}`)
+        }
+    }
+}
 export const postLogin = (newLogin) =>{
     return async (dispatch) => {
         try {
@@ -134,7 +148,7 @@ export const getUsers = () =>{
           dispatch({ type: GET_USERS, payload: usuarios });
         } catch (error) {
           console.log(`error ${error}`);
-          console.log(`no fundaciones creadas `);
+          console.log(`no usuarios creados`);
         }
       };
 }

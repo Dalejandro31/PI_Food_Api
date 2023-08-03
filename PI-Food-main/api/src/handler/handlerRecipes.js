@@ -24,7 +24,7 @@ async function getAllRecipe(req, res){
     // se hace uso de las funciones get api y recipedb y  se hace uso de promise.all para que se ejecuten en paralelo y ambas se resuelvan
     const [api, db] = await Promise.all([getApi(),recipeDb()]);
 
-    const allRecipes = [...api, ...db];
+    const allRecipes = [...api, ...db]  ;
     
     if(name){
         try {

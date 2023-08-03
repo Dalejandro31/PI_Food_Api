@@ -5,10 +5,10 @@ const STATUS_ERROR = 404;
 
 
 async function loginUsuarios(req, res) {
-    const { email, contraseña } = req.body;
+    const { email, password } = req.body;
 
     try {
-      const userLogin = await Users.findOne({ where: { email, contraseña } });
+      const userLogin = await Users.findOne({ where: { email, password } });
       if (userLogin) {
         return res.status(STATUS_CREATED).json({
           message: 'Logueado con éxito',

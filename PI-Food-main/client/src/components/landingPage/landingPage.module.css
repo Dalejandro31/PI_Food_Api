@@ -21,28 +21,7 @@ body {
     height: 100vh;
   }
   
-  .contenedorInfoPi {
-    background: linear-gradient(135deg rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    width: 100%;
-    height: 80%;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 32px;
-    float: left;
-    margin-bottom: 2rem;
-    color: #f1faee;
-    display: flex;
- 
-  }
-  
-  .contenedorInfoPi h2,
-  .contenedorInfoPi h3 {
-    text-align: justify;
-  }
+
   
   .buttonHomePage {
     height: 150%;
@@ -88,15 +67,121 @@ body {
   
   .contenedorInfo {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-direction: row;
     width: 80%;
     height: 80%;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .content1{
+    border-radius: 30px / 80px;
+    background: linear-gradient(135deg, rgba(20, 2, 2, 0.575), rgba(10, 1, 1, 0));
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.514);
+    width: 34%;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+
+  }
+
+  .content2{
+    width: 32%;
+    
+  }
+
+  .content3{
+    width: 32%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
   }
   
-  .text {
-    height: 90%;
+  .myInfo{
+    
+    height: 50%;
+  }
+
+  .photo{
+    
+    height: 50%;
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contentPhoto{
+    background-image: url('../../images/MyPhoto.jpeg');
+    background-size: cover;
+    height: 60%;
+    width: 50%;
+    border-radius: 30%;
+    margin-bottom: .5rem;
+  }
+
+  .infoProject{
+    
+    height: 100%;
     width: 90%;
-    overflow: auto; /* Add this line to allow scrolling when content overflows */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    text-align: justify;
+  }
+
+  .myInfo{
+    background: linear-gradient(135deg, rgba(20, 2, 2, 0.575), rgba(10, 1, 1, 0));
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.514);
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 30px / 150px;
+  }
+
+
+  .socialNetworks {
+    background: linear-gradient(135deg, rgba(20, 2, 2, 0.575), rgba(10, 1, 1, 0));
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.514);
+    height: 40%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 30px / 150px;
+  }
+
+  h1, h2{
+    color: #bec9be;
+  }
+
+  .socialNetworks a {
+    transition: transform 250ms;
+    display: inline-block;
   }
   
+  .socialNetworks a:hover {
+    transform: translateY(-5px);
+  }
+
+  .buttonLinkedin{
+    color: #0c5dc6;
+  }
+  
+  .buttonGitHub{
+    color: #edf6f9;
+  }

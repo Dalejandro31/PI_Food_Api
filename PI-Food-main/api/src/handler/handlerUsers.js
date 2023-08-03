@@ -6,10 +6,10 @@ const STATUS_ERROR=404;
 
 
 async function PostUsers(req, res){
-    const {name, email, contraseña} = req.body
+    const {name, lastName, email, password} = req.body
 
     try {
-        if(!name || !email || !contraseña){
+        if(!name || !lastName || !email || !password){
             return res
             .status(STATUS_ERROR)
             .json({message: "The require information is missing"});
@@ -17,8 +17,9 @@ async function PostUsers(req, res){
 
         const newUser =await Users.create({
             name,
+            lastName,
             email,
-            contraseña
+            password
         }); 
 
         res.status(STATUS_CREATED).json(newUser);

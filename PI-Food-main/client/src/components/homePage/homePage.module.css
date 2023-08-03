@@ -9,7 +9,14 @@
     justify-content: center;
     align-items: center;
   }
-  
+
+  .homeContainer2{
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
   .buttonsForm {
     background-color: #333; /* Color de fondo */
     border: none; /* Borde */
@@ -27,13 +34,17 @@
   }
 
   /* Contenedor de los botones */
-.orderButtons {
-    display: flex;
-    flex-direction: row;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 18%;
   }
   
+  .divCards{
+    
+    width: 100%;
+  }
   /* Efecto hover */
   .buttonsForm:hover {
     background-color: #555;
@@ -49,7 +60,7 @@
   
   /* Estilos para el contenido principal de la página */
   .content {
-    max-width: 800px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 20px;
     font-size: 18px;
@@ -63,5 +74,60 @@
     margin-top: 40px;
     margin-bottom: 20px;
     text-align: center;
+  }
+  
+  .alphabeticOrder{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 2rem;
+    margin-top: 1rem;
+  }
+
+  .labelOrder{
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.856);
+    width: 80%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    height: 2rem;
+  }
+
+
+  .homeSelector{
+    margin-top: 2rem;
+    width: 20%;
+    height: 2rem;
+  }
+  .selector {
+    box-shadow: 0 8px 32px 0 rgba(41, 38, 38, 0.479);
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    text-align: center; 
+    padding: 8px; 
+    background: #dedbd2;
+  }
+  
+  .selector option {
+    text-align: center;
+  }
+
+
+  .paginationHome{
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+
+  }
+
+  .buttonPagination{
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   }
   

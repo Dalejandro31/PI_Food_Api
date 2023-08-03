@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom';
 
 function Card(props){
 
-    const{id, name,image, diets, healthscore } = props
+    const{id, name,image, healthscore} = props
+    console.log(props)
     return (
         <div className={style.cardContainer}>
             <div className={style.divImg}>
@@ -12,11 +13,10 @@ function Card(props){
             </div>
             <div className={style.divInfo}>
                 <h3 className={style.name}>{name}</h3>
-                <h3>Diets:</h3>
-                <p className={style.name}>{diets.join(',')}</p>
-                <h3>HealthScore:</h3>
-                <label>{healthscore}</label>
             </div>
+            {/* <div className={style.divInfo}>
+                <h3 className={style.healthscore}>{healthscore}</h3>
+            </div> */}
             
         </div>
     )

@@ -27,7 +27,7 @@ function welcomePage(){
                     </ul>
                 </nav>
                 <section className={style.home}>
-                    <div>   
+                    <div className={style.introtext}>   
                         <h1>
                             <span className={style.created}>you can created</span><br/>
                             <span className={style.diet}>your diet</span>
@@ -40,7 +40,7 @@ function welcomePage(){
                     </div>
                     <div>
                     <iframe 
-                        className="w-560 h-315"
+                        className={style.frame}
                         src="https://www.youtube.com/embed/sUmM_PFpsvQ"
                         title="YouTube video player"
                         frameBorder="0"
@@ -50,6 +50,7 @@ function welcomePage(){
                     <div className={style.stand1}></div>
                     <div className={style.stand2}></div>
                     </div>
+                    
                 </section>
             </header>
         </div>

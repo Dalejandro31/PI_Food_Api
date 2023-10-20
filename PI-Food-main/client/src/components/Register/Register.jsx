@@ -69,6 +69,7 @@ export default function Register(){
                 <div className={style.divPassword}>
                     <input
                         className={style.password}
+                        type="password"
                         value={newUser.password}
                         name="password"
                         placeholder="Password"

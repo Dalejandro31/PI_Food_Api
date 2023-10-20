@@ -67,7 +67,7 @@ export default function Login() {
 
                         <label htmlFor="inp" className={style.inp}>
                             <input 
-                                type="text" 
+                                type="password" 
                                 value={input.password}
                                 name="password"
                                 onChange={handleChange}

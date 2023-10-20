@@ -12,7 +12,7 @@ const urlAPI =`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KE
 
 async function getRecipeId(id){
     
-    const sourceId = isNaN(id) ? "db" : "api";
+    const sourceId = isNaN(id) ? "db" : "api"; 
 
     if(sourceId === "api"){
 

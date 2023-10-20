@@ -175,7 +175,7 @@ function Home(){
                             Less Healthy
                         </label>
                     </div>
-                    <div className={style.alphabeticOrder}>
+                    {/* <div className={style.alphabeticOrder}>
                         <label className={style.labelOrder}>
                         <input
                             type="checkbox"
@@ -192,7 +192,7 @@ function Home(){
                         />
                             DB
                         </label>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={style.divCards}>
                     

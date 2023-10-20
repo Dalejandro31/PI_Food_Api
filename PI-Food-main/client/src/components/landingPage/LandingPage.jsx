@@ -25,8 +25,32 @@ function welcomePage(){
                             <a href="#about" className={style.navlink}>subcribe</a>
                         </li>
                     </ul>
-                   
                 </nav>
+                <section className={style.home}>
+                    <div>   
+                        <h1>
+                            <span className={style.created}>you can created</span><br/>
+                            <span className={style.diet}>your diet</span>
+                        </h1>
+                        <p>
+                            texto sobre el objetivo del sitio web y demas ...
+                        </p>
+                        <a href="#" className={style.btnred}>Learn more</a>
+                        <a href="#" className={style.btnblue}>Subscribe</a>
+                    </div>
+                    <div>
+                    <iframe 
+                        className="w-560 h-315"
+                        src="https://www.youtube.com/embed/sUmM_PFpsvQ"
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                    <div className={style.stand1}></div>
+                    <div className={style.stand2}></div>
+                    </div>
+                </section>
             </header>
         </div>
     )
